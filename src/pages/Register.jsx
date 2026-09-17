@@ -7,7 +7,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('parent'); // default role
+  const [role, setRole] = useState('parent');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -19,9 +19,8 @@ const Register = () => {
     setSubmitting(true);
 
     try {
-      // Adjust the endpoint path if your backend uses a different route for registration (e.g., /auth/register or /users/register)
       await axiosClient.post('/auth/register', { name, email, password, role });
-      navigate('/'); // Redirect back to login after successful registration
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please try again.');
     } finally {
